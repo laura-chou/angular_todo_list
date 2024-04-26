@@ -38,7 +38,7 @@
       </a>
     </li>
   </ul>
-  <table class="table">
+  <table class="table" cdkDropList (cdkDropListDropped)="dropItem($event)">
     <thead>
       <tr class="text-center">
         <th width="5%">
@@ -55,7 +55,7 @@
         <th width="30%">edit</th>
       </tr>
     </thead>
-    <tbody app-item *ngFor="let i of items" (remove)="remove(i)" [item]="i"></tbody>
+    <tbody app-item *ngFor="let i of items" (remove)="remove(i)" [item]="i" [items]="items" cdkDrag></tbody>
   </table>
 </main>
 

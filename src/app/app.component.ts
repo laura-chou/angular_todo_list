@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { Item } from "./item";
 import { ItemComponent } from "./item/item.component";
+import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, ItemComponent],
+  imports: [CommonModule, ItemComponent, CdkDropList, CdkDrag],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -37,11 +38,15 @@ export class AppComponent {
 
   addItem(description: string) {
     if (!description) return;
-  
-    this.allItems.unshift({
-      description,
-      done: false
-    });
+    const isDuplicate = this.allItems.find(item => item.description === description)
+    if(isDuplicate) {
+      alert('There are already have duplicate items')
+    } else {
+      this.allItems.unshift({
+        description,
+        done: false
+      });
+    }
   }
 
   remove(item: Item) {
@@ -53,5 +58,8 @@ export class AppComponent {
   checkedAll(event: any) {
     this.allItems.forEach(item => item.done = event.target.checked);
   }
-
+  
+  dropItem(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.allItems, event.previousIndex, event.currentIndex);
+  }
 }
