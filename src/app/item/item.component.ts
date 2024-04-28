@@ -1,6 +1,6 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { Item } from "../item";
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Item } from '../item';
 
 @Component({
   selector: '[app-item]',
@@ -10,7 +10,7 @@ import { Item } from "../item";
   styleUrl: './item.component.css'
 })
 export class ItemComponent {
-
+  
   editable = false;
 
   @Input() items: Item[] = [];

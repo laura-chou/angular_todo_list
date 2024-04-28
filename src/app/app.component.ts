@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { CommonModule } from "@angular/common";
+import { CommonModule } from '@angular/common';
 import { Item } from "./item";
-import { ItemComponent } from "./item/item.component";
-import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray} from '@angular/cdk/drag-drop';
+import { ItemComponent } from './item/item.component';
+import { SessionStorageService } from './session-storage.service';
+import { CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-root',
@@ -12,13 +13,11 @@ import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray} from '@angular/cdk/d
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+  constructor(private sessionStorageService: SessionStorageService) {}
+  
   componentTitle = "Angular Todo List";
   filter: "all" | "active" | "done" = "all";
-  allItems = [
-    { description: "eat", done: true },
-    { description: "sleep", done: false },
-    { description: "play", done: false }
-  ];
+  allItems = this.sessionStorageService.getItem();
   
   get isCheckAll() {
     return this.allItems.every(item => {
@@ -27,17 +26,18 @@ export class AppComponent {
   }
 
   get items() {
+    this.sessionStorageService.setItem(this.allItems)
     if (this.filter === "all") {
       return this.allItems;
     }
-    return this.allItems.filter((item) =>
+    return this.allItems.filter(item =>
       this.filter === "done" ? item.done : !item.done
     );
   }
 
   addItem(description: string) {
     if (!description) return;
-    const isDuplicate = this.allItems.find(item => item.description === description)
+    const isDuplicate = this.allItems.find((item: { description: string; }) => item.description === description)
     if(isDuplicate) {
       alert('There are already duplicate item')
     } else {
