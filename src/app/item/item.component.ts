@@ -21,7 +21,7 @@ export class ItemComponent {
     if (!description) return;
     const isDuplicate = this.items.find(item => item.description === description)
     if(isDuplicate) {
-      alert('There are already have duplicate items')
+      alert('There are already duplicate item')
     } else {
       this.editable = false;
       this.item.description = description;

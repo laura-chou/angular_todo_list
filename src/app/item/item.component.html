@@ -9,7 +9,7 @@
   <div *ngIf="!editable; then notEditBlock else editBlock"></div>
   <ng-template #notEditBlock>
     <td>
-      <h4 class="m-0 drag">{{item.description}}</h4>
+      <h4 class="m-0 drop">{{item.description}}</h4>
     </td>
     <td>
       <button type="button" class="btn btn-success me-2" (click)="editable = !editable">Edit</button>

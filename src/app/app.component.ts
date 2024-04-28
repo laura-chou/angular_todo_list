@@ -17,8 +17,7 @@ export class AppComponent {
   allItems = [
     { description: "eat", done: true },
     { description: "sleep", done: false },
-    { description: "play", done: false },
-    { description: "laugh", done: false },
+    { description: "play", done: false }
   ];
   
   get isCheckAll() {
@@ -40,7 +39,7 @@ export class AppComponent {
     if (!description) return;
     const isDuplicate = this.allItems.find(item => item.description === description)
     if(isDuplicate) {
-      alert('There are already have duplicate items')
+      alert('There are already duplicate item')
     } else {
       this.allItems.unshift({
         description,
@@ -50,7 +49,7 @@ export class AppComponent {
   }
 
   remove(item: Item) {
-    if (confirm('Make sure you want to delete？')) {
+    if (confirm('Make sure you want to delete it.')) {
       this.allItems.splice(this.allItems.indexOf(item), 1);
     }
   }
