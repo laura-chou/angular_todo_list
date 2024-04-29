@@ -93,7 +93,12 @@
           }
         },
         "deploy": {
-          "builder": "angular-cli-ghpages:deploy"
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "/angular_todo_list/",
+            "name": "Laura",
+            "email": "laura@gmail.com"
+          }
         }
       }
     }
