@@ -40,7 +40,7 @@
   </ul>
   <table class="table table-hover" cdkDropList (cdkDropListDropped)="dropItem($event)">
     <thead>
-      <tr class="text-center  table-success">
+      <tr class="text-center align-middle table-success">
         <th width="5%">
           <div class="form-check">
             <input 
@@ -52,7 +52,9 @@
           </div>
         </th>
         <th width="65%">description</th>
-        <th width="30%">edit</th>
+        <th width="30%">
+          <button type="button" class="btn btn-danger ms-1" (click)="deleteAll()">Delete All</button>
+        </th>
       </tr>
     </thead>
     <tbody app-item *ngFor="let i of items" (remove)="remove(i)" [item]="i" [items]="items" cdkDrag></tbody>

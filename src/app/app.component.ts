@@ -54,6 +54,12 @@ export class AppComponent {
     }
   }
 
+  deleteAll() {
+    if (confirm('Make sure you want to delete all.')) {
+      this.allItems.length = 0
+    }
+  }
+  
   checkedAll(event: any) {
     this.allItems.forEach(item => item.done = event.target.checked);
   }
